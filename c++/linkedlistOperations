@@ -1,0 +1,119 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <stdio.h>
+#include<iostream>
+using namespace std;
+int pos=0;
+class node{
+  int data ;
+  node *next;
+  node *head;
+  public:
+  void insertAthead(int data)
+  {
+      node *temp=new node;
+      temp->data=data;
+      temp->next=NULL;
+      if (head==NULL)
+      {
+          head=temp;
+      }
+      else
+      {
+          node *current=head;
+          head=temp;
+          head->next=current;
+      }
+  }
+  void display()
+  {
+      node *temp=new node;
+      temp=head;
+      while(temp!=NULL)
+      {
+          cout<<temp->data<<" ";
+          temp=temp->next;
+      }
+  }
+  
+  void deleteAttail()
+  {
+      cout<<endl<<"------- Deletion at tail -------->>"<<"  ";
+      node *prev=head;
+      node *current=head->next;
+      while(current->next!=NULL)
+      {
+          prev=prev->next;
+          current=current->next;
+      }
+      delete[] current;
+      prev->next=NULL;
+  }
+  void Search(int data)
+  {
+      pos=0;
+      cout<<endl<<"------- Search -------->>"<<"  ";
+      int flag=0;
+      node *temp=new node;
+      temp=head;
+      while(temp!=NULL)
+      {
+          pos++;
+          if(temp->data==data)
+          {
+              flag=1;
+              break;
+          }
+          
+          temp=temp->next;
+      }
+      if(flag==1)
+      {
+          cout<<"Found"<<" "<<"Location : "<<pos;
+      }
+      else{
+          cout<<"Not found";
+      }
+  }
+  
+  void deteteAtGivenPos()
+  {
+      cout<<endl<<"------- deteteAtGivenPos -------->>"<<"  ";
+      node *prev=head;
+      node* current=head->next->next;
+      int count=2;
+      while(count<pos)
+      {
+          prev=prev->next;
+          current=current->next;
+          count++;
+      }
+      prev->next=current;
+  }
+  
+};
+int main()
+{
+    node *n1=new node;
+    n1->insertAthead(1);
+    n1->insertAthead(2);
+    n1->insertAthead(3);
+    n1->insertAthead(4);
+    n1->insertAthead(5);
+    n1->insertAthead(6);
+    n1->insertAthead(7);
+    n1->insertAthead(8);
+    n1->display();
+    n1->deleteAttail();
+    n1->display();
+    n1->Search(4);
+    n1->deteteAtGivenPos();
+    n1->display();
+    return 0;
+}

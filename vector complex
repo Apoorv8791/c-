@@ -1,0 +1,75 @@
+For each query you have to print "Yes" (without the quotes) if the number is present and at which index(1-based) it is present separated by a space.
+
+If the number is not present you have to print "No" (without the quotes) followed by the index of the next smallest number just greater than that number.
+
+You have to output each query in a new line.
+
+Sample Input
+
+ 8
+ 1 1 2 2 6 9 9 15
+ 4
+ 1
+ 4
+ 9
+ 15
+Sample Output
+
+ Yes 1
+ No 5
+ Yes 6
+ Yes 8
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */  
+    
+    vector<int > v;
+    int n=0,x=0,query=0,queries=0,Z=0;
+    bool flag=false;
+    cin>>n;
+    for (int i=0; i<n ; i++)
+    {
+        cin>>x;
+        v.push_back(x);
+        
+    } 
+    sort(v.begin(),v.end());
+    cin>>query;
+    
+    for(int i=0; i<query ; i++ )
+    {
+        cin>>queries;
+        for (int i=0; i<v.size() ; i++)
+        {
+            if(v[i]==queries)
+            {
+                cout<<"Yes "<<i+1 <<endl;
+                flag =true;
+                break;
+            }
+        }
+        
+        if(flag==false)
+        {
+            for ( Z=0; Z<v.size() ; Z++)
+            {
+                if(queries<v[Z] )
+                {
+                    break;
+                }
+            }
+                 cout<<"No "<<Z+1 <<endl;
+        }
+       flag=false;
+        
+    }
+    return 0;
+}

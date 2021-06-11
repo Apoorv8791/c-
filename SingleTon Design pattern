@@ -1,0 +1,40 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+
+class gamesetting 
+{
+    static gamesetting * instance ;
+    
+    public:
+    static gamesetting * getinsatnce()
+    {
+        if(instance ==NULL)
+        {
+            
+            instance  = new gamesetting ();
+            return instance ;
+        }
+    }
+    
+    void fun()
+    {
+        cout<<"Function called"<<endl;
+    }
+};
+gamesetting * gamesetting:: instance =NULL;
+
+void somefunction()
+{
+    gamesetting * b= gamesetting :: getinsatnce ();
+    if(b)
+    {
+        b->fun();
+    }
+}
+int main()
+{
+    somefunction();
+    return 0;
+}

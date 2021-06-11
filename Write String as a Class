@@ -1,0 +1,51 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include <map>
+#include <string.h>
+using namespace std;
+class abc 
+{
+
+public:
+ char *ptr;
+ abc (): ptr{nullptr}
+ {
+         ptr= new char[1];
+         ptr[0]='\0';
+ }
+ 
+  abc (char * p)
+ {
+         if(ptr==NULL)
+     {
+         ptr= new char[1];
+         ptr[0]='\0';
+         cout<<"NULL need to allocate"<<endl;
+     }
+     
+     
+     else
+     {
+         ptr= new char[(strlen(p)+1)];
+         strcpy(ptr,p);
+     }
+ }
+    abc ( const abc &obj)
+    {
+         ptr = new char[strlen(obj.ptr)+1];
+        strcpy(ptr, obj.ptr);
+    }
+ void print()
+ {
+     cout<<ptr<<endl;
+ }
+ 
+};
+int main()
+{
+ abc obj1("Apoorv");
+ obj1.print();
+ abc obj2(obj1);
+ obj2.print();
+    return 0;
+}

@@ -1,0 +1,43 @@
+void  fun(int * ptr, int n)
+{
+	int temp = 0, rev = 0, rem = 0,max=0;
+	for (int i = 0; i < 5; i++)
+	{
+		temp = ptr[i];
+
+		while (temp != 0)
+		{
+			rem = temp % 10;
+			rev = rev * 10 + rem;
+			temp = temp / 10;
+		}
+
+		ptr[i] = rev;
+		rev = 0;
+	}
+	int i = 0,j=0;
+	max = ptr[i] - ptr[i + 1];
+	for ( i = 0; i < 5; i++)
+	{
+		for ( j = 0; j < 5; j++)
+		{
+			if (ptr[j] - ptr[i] > max)
+			{
+				max = ptr[j] - ptr[i];	
+			}
+		}
+	}
+	for (i = 0; i < 5; i++)
+	{
+		for (j = 0; j < 5; j++)
+		{
+			if (ptr[j] - ptr[i] == max)
+			{
+				cout << "max" << " " << max << " " << "i =" << " " << i << " " << "j =" << " " << j << " " << "ptr[i] " << ptr[i] << " " << "ptr[j] " << ptr[j] << endl;
+			}
+		}
+	}
+	
+	
+	
+}

@@ -1,0 +1,63 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include <map>
+#include <string.h>
+#include <stack>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+#define mysize(type)  (char*) (&type+1)- (char*) (&type)
+
+class base 
+{
+  int size;
+  char * ptr=NULL;
+  public:
+  
+  base()
+  {
+  }
+  base (char *str)
+  {
+      size=strlen(str);
+      ptr = new char [size];
+      strcpy(ptr,str);
+  }
+  base & operator =(const base &obj)
+  {
+      size=strlen(obj.ptr);
+      ptr =new char [size];
+      ptr=obj.ptr;
+  }
+  
+    base (const base &obj)
+  {
+      size=sizeof(obj);
+     ptr =new char [sizeof(obj)];
+      ptr=obj.ptr;
+  }
+  void change(char *str)
+  {
+      //strncat(ptr,str,size);
+      ptr=str;
+  }
+    void print ()
+    {
+        cout<<ptr <<" "<<strlen(ptr)<<" size "<<size<<endl;
+    }
+};
+int main()
+{
+ base obj("Apoorv");
+ obj.change("Saxena");
+ obj.print();
+ cout<<endl;
+ base obj1;
+ obj1=obj;
+ cout<<endl;
+ obj.print();
+ obj1.change("Gupta");
+ obj1.print();
+    return 0;
+}

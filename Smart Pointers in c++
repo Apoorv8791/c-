@@ -1,0 +1,60 @@
+#include <iostream>
+#include <memory>
+using namespace std;
+class Entity {
+public:
+
+Entity()
+{
+  cout<<"constructor of Entity called"<<endl;
+}
+
+~Entity ()
+{
+    cout<<"Destructor of Entity called"<<endl;
+}
+void print ()
+{
+  cout<<"print "<<endl;
+}
+};
+
+int main() {
+
+/*----------unique_ptr -----------------
+
+  std:: unique_ptr<Entity> entity (new Entity());
+  entity->print();
+
+  std:: unique_ptr<Entity> entity2=entity;
+ copy const and assignment is operator is deleted in unique_ptr
+ */
+
+/*----------Shared_ptr -----------------
+{
+ std:: shared_ptr<Entity>E0;
+    {
+       std:: shared_ptr<Entity> entity (new Entity());
+       E0=entity;
+
+       when entity goes out of scope memory will not be deallocate
+       beacuse E0 is there and ref count is still not zero
+       when E0 goes out scope then ref count is zero and memory gets freed.
+    }
+}*/
+
+
+/*----------Weak_ptr -----------------
+{
+ std:: weak_ptr<Entity>E0;
+    {
+       std:: shared_ptr<Entity> entity (new Entity());
+       E0=entity;
+       when you assign shared_ptr to weak ptr it does not ++ ref count.
+     when entity goes out of scope memory will be deallocate as weak_ptr
+     does not increase ref count and  
+    }
+}*/
+
+return 0;
+}
